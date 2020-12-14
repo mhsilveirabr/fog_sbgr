@@ -1,5 +1,3 @@
-from d01_data.load_data_isd import GetIsdData
-from d00_utils.calculations import calculate_rh
 import warnings
 import numpy as np
 import re
@@ -8,6 +6,9 @@ import os
 import sys
 src_dir = os.path.join(os.getcwd(), '..', 'src')
 sys.path.append(src_dir)
+from d00_utils.calculations import calculate_rh
+from d01_data.load_data_isd import GetIsdData
+
 
 warnings.filterwarnings('ignore')
 
@@ -223,4 +224,3 @@ class DataISD:
         base_data.replace(to_replace=99999, value=np.nan, inplace=True)
 
         return base_data
-

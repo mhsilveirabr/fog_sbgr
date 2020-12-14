@@ -1,17 +1,20 @@
+import warnings
 import pandas as pd
 import os
 import sys
 src_dir = os.path.join(os.getcwd(), '..', 'src')
 sys.path.append(src_dir)
-import warnings
+
 from d01_data.load_data_inmet import GetInmetData
 
 warnings.filterwarnings('ignore')
+
 
 class DataINMET:
     """
     Contains functions to load the raw downloaded files and extract information from them
     """
+
     def __init__(self, station):
         self.station = station
 
@@ -46,7 +49,9 @@ class DataINMET:
             grouped.append(inmet_data)
         # Stores all data data into a dataframe
         data = pd.concat(grouped, sort=False)
-        data = data.apply(lambda x: x.str.replace(',', '.').replace('-9999', 0))
-        data.to_csv(f'data/02_intermediate/{self.station}_inmet_data.csv', index=False)
+        data = data.apply(lambda x: x.str.replace(
+            ',', '.').replace('-9999', 0))
+        data.to_csv(
+            f'data/02_intermediate/{self.station}_inmet_data.csv', index=False)
         print('Done!')
         return data

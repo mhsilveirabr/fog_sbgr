@@ -14,8 +14,9 @@ class GetInmetData:
     """
     Contain functions to gather data from INMET and organise the files in directories
     """
+
     def __init__(self, station):
-        self.station = station # 'SAO PAULO - MIRANTE'
+        self.station = station  # 'SAO PAULO - MIRANTE'
         self.end_year = datetime.datetime.today().year - 1
         self.start_year = datetime.datetime.today().year - 11
 
@@ -26,7 +27,8 @@ class GetInmetData:
         print(f'Downloading {self.station} data')
         for year in range(self.start_year, self.end_year, 1):
             url = f'https://portal.inmet.gov.br/uploads/dadoshistoricos/{year}.zip'
-            Path(f'data/01_raw/inmet/{self.station}/zip/').mkdir(parents=True, exist_ok=True)
+            Path(
+                f'data/01_raw/inmet/{self.station}/zip/').mkdir(parents=True, exist_ok=True)
             zip_filename = f'data/01_raw/inmet/{self.station}/zip/{year}.zip'
             # Only download if file does not exist
             if not os.path.exists(zip_filename):
@@ -57,5 +59,3 @@ class GetInmetData:
                             shutil.copyfileobj(member, outfile)
 
         print('Download complete')
-        
-

@@ -1,10 +1,10 @@
+import datetime
+import warnings
+from pathlib import Path
 import urllib.request
 import pandas as pd
 import os
-import numpy as np
-from pathlib import Path
-import warnings
-import datetime
+
 
 warnings.filterwarnings('ignore')
 
@@ -15,7 +15,7 @@ class GetIsdData:
     """
 
     def __init__(self, station_icao):
-        self.station_icao = station_icao # 'SBGR'
+        self.station_icao = station_icao  # 'SBGR'
         self.end_year = datetime.datetime.today().year - 1
         self.start_year = datetime.datetime.today().year - 11
 
